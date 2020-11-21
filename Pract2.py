@@ -58,7 +58,7 @@ r_p = rand_progression(7, 10,7,7)
 # print(next(r_p))
 # print(next(r_p))
 
-# Coroutine
+# 3
 def rand_progression2(start_val, modulator, productor):
     r_var = start_val
     while True:
@@ -81,18 +81,16 @@ def test_foo():
 
 
 def decorator_func1(func):
-    global test_foo_counter
-
     def wrapper():
-        global test_foo_counter
         a = func()
-        test_foo_counter += 1
-        print(f"job was done {test_foo_counter} time(s)")
+        decorated_func_1.counter += 1
+        print(f"job was done {decorated_func_1.counter} time(s)")
         return a
     return wrapper
 
 
 decorated_func_1 = decorator_func1(test_foo)
+decorated_func_1.counter = 0
 print(decorated_func_1())
 print(decorated_func_1())
 
