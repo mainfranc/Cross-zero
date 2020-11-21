@@ -59,7 +59,7 @@ print(next(r_p))
 print(next(r_p))
 
 # 3
-def rand_progression(start_val, modulator, productor):
+def rand_progression2(start_val, modulator, productor):
     r_var = start_val
     while True:
         yield r_var
@@ -67,7 +67,7 @@ def rand_progression(start_val, modulator, productor):
         r_var = (productor * r_var + addition) % modulator
         
         
-r_p2 = rand_progression(7, 10,7)
+r_p2 = rand_progression2(7, 10,7)
 next(r_p2)
 r_p.send(7)
 next(r_p2)
