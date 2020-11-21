@@ -58,6 +58,11 @@ r_p = rand_progression(7, 10,7,7)
 # print(next(r_p))
 # print(next(r_p))
 
+def text_by_words(in_str):
+    lst_str = in_str.split(" ")
+    for i in lst_str:
+        yield 1
+
 # 3
 def rand_progression2(start_val, modulator, productor):
     r_var = start_val
@@ -69,9 +74,10 @@ def rand_progression2(start_val, modulator, productor):
 r_p2 = rand_progression2(7, 10,7)
 counter = 0
 for i in r_p2:
-    counter += 1
-    if counter == 10: break
     print(i)
     r_p2.send(7)
+    counter += 1
+    if counter == 10: break
+
 
 
