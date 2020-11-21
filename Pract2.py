@@ -1,5 +1,5 @@
 from random import randint
-
+from datetime import datetime
 # lambda
 # 1
 lst = [(randint(0,9), randint(0,9)) for i in range(6)]
@@ -70,15 +70,22 @@ for i in range(10):
 
 # decorators
 # 1
-test_foo_counter = 0
-def test_foo():
-    return randint(1, 8) ** 2
+
+def test_foo(n):
+    result = []
+    for i in range(n):
+        result.append(i ** 2)
+    return result
 
 
 def decorator_func1(func):
-    def wrapper():
-        a = func()
+    def wrapper(n):
+        start_time = datetime.now()
+        a = func(n)
+        fin_time = datetime.now()
+        print('it took ' + str(fin_time - start_time))
         decorated_func_1.counter += 1
+        decorated_func_1.were_called.append(datetime.now())
         print(f"job was done {decorated_func_1.counter} time(s)")
         return a
     return wrapper
@@ -86,7 +93,10 @@ def decorator_func1(func):
 
 decorated_func_1 = decorator_func1(test_foo)
 decorated_func_1.counter = 0
-print(decorated_func_1())
-print(decorated_func_1())
+decorated_func_1.were_called = []
+print(decorated_func_1(4))
+print(decorated_func_1(5))
+decorated_func_1(1000000)
+print(decorated_func_1.were_called)
 
 
