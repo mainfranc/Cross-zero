@@ -60,12 +60,14 @@ def rand_progression2(start_val, modulator, productor):
         addition = (yield)
         r_var = (productor * r_var + addition) % modulator
         print(r_var)
+        yield r_var
 
 r_p2 = rand_progression2(7, 10,7)
 next(r_p2)
 
 for i in range(10):
     r_p2.send(7)
+    print(i)
 
 
 # decorators
@@ -79,24 +81,27 @@ def test_foo(n):
 
 
 def decorator_func1(func):
+    test_foo.counter = 0
+    test_foo.were_called = []
     def wrapper(n):
         start_time = datetime.now()
         a = func(n)
         fin_time = datetime.now()
         print('it took ' + str(fin_time - start_time))
-        decorated_func_1.counter += 1
-        decorated_func_1.were_called.append(datetime.now())
-        print(f"job was done {decorated_func_1.counter} time(s)")
+        test_foo.counter += 1
+        test_foo.were_called.append(datetime.now())
+        print(f"job was done {test_foo.counter} time(s)")
         return a
     return wrapper
 
 
 decorated_func_1 = decorator_func1(test_foo)
-decorated_func_1.counter = 0
-decorated_func_1.were_called = []
+# decorated_func_1.counter = 0
+# decorated_func_1.were_called = []
+# decorator_func1.cache = {}
 print(decorated_func_1(4))
 print(decorated_func_1(5))
 decorated_func_1(1000000)
-print(decorated_func_1.were_called)
+print(test_foo.were_called)
 
 
