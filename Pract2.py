@@ -65,3 +65,10 @@ def rand_progression(start_val, modulator, productor):
         yield r_var
         addition = yield 
         r_var = (productor * r_var + addition) % modulator
+        
+        
+r_p2 = rand_progression(7, 10,7)
+next(r_p2)
+r_p.send(7)
+next(r_p2)
+r_p.send(7)
