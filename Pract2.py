@@ -1,6 +1,11 @@
 from random import randint
 
 # lambda
+# Создать список, в котором каждый элемент – кортеж из двух чисел. Отсортировать данный список по убыванию вторых элементов кортежей.​
+#
+# Отсортируйте список слов по убыванию длины слова.​
+#
+# Реализуйте пример замыкания (например, «инкрементатор»)
 # 1
 lst = [(randint(0,9), randint(0,9)) for i in range(6)]
 
@@ -68,5 +73,27 @@ for i in range(10):
     r_p2.send(7)
 
 
+# decorators
+# 1
+test_foo_counter = 0
+def test_foo():
+    return randint(1, 8) ** 2
+
+
+def decorator_func1(func):
+    global test_foo_counter
+
+    def wrapper():
+        global test_foo_counter
+        a = func()
+        test_foo_counter += 1
+        print(f"job was done {test_foo_counter} time(s)")
+        return a
+    return wrapper
+
+
+decorated_func_1 = decorator_func1(test_foo)
+print(decorated_func_1())
+print(decorated_func_1())
 
 
