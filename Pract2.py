@@ -89,13 +89,13 @@ def decorator_func1(func):
     fib.counter = 0
     fib.were_called = []
     fib.cache = {}
-    def wrapper(*n):
+    def wrapper(*args):
         start_time = datetime.now()
-        if n in fib.cache:
-            a = fib.cache[n]
+        if args in fib.cache:
+            a = fib.cache[args]
         else:
-            a = func(*n)
-            fib.cache[n] = a
+            a = func(*args)
+            fib.cache[args] = a
         fin_time = datetime.now()
         print('it took ' + str(fin_time - start_time))
         fib.counter += 1
