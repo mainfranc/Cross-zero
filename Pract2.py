@@ -19,17 +19,20 @@ def sort_lst2(lst):
     return sorted(lst, key=lambda x: len(x), reverse=True)
 
 # 3
-def incrementer(start_val):
+def incrementer(start_val, modulator, productor,addition):
     r_var = start_val
+    m = modulator
+    a = productor
+    c = addition
     def inner():
         nonlocal r_var
-        m = randint(2,5)
-        a = randint(0,m + 5)
-        c = randint(0,m + 5)
+        nonlocal m
+        nonlocal a
+        nonlocal c
         r_var = (a * r_var + c) % m
         return r_var
     return inner
-test_func = incrementer(2)
+test_func = incrementer(7, 10,7,7)
 
 print(test_func())
 print(test_func())
