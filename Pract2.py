@@ -1,11 +1,6 @@
 from random import randint
 
 # lambda
-# Создать список, в котором каждый элемент – кортеж из двух чисел. Отсортировать данный список по убыванию вторых элементов кортежей.​
-#
-# Отсортируйте список слов по убыванию длины слова.​
-#
-# Реализуйте пример замыкания (например, «инкрементатор»)
 # 1
 lst = [(randint(0,9), randint(0,9)) for i in range(6)]
 
@@ -58,26 +53,20 @@ r_p = rand_progression(7, 10,7,7)
 # print(next(r_p))
 # print(next(r_p))
 
-def text_by_words(in_str):
-    lst_str = in_str.split(" ")
-    for i in lst_str:
-        yield 1
-
 # 3
 def rand_progression2(start_val, modulator, productor):
     r_var = start_val
     while True:
-        yield r_var
-        addition = yield
+        addition = (yield)
         r_var = (productor * r_var + addition) % modulator
+        print(r_var)
 
 r_p2 = rand_progression2(7, 10,7)
-counter = 0
-for i in r_p2:
-    print(i)
+next(r_p2)
+
+for i in range(10):
     r_p2.send(7)
-    counter += 1
-    if counter == 10: break
+
 
 
 
