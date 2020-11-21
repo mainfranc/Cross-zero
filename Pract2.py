@@ -14,7 +14,7 @@ def sort_lst2(lst):
     return sorted(lst, key=lambda x: len(x), reverse=True)
 
 # 3
-def linking():
+def increment():
     r_var = randint(0,2)
     def inner():
         nonlocal r_var
