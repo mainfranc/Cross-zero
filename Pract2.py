@@ -79,29 +79,38 @@ def test_foo(n):
         result.append(i ** 2)
     return result
 
+def fib(n):
+    result = 0
+    for i in range(n + 1):
+        result += i
+    return result
 
 def decorator_func1(func):
-    test_foo.counter = 0
-    test_foo.were_called = []
-    def wrapper(n):
+    fib.counter = 0
+    fib.were_called = []
+    fib.cache = {}
+    def wrapper(*n):
         start_time = datetime.now()
-        a = func(n)
+        if n in fib.cache:
+            a = fib.cache[n]
+        else:
+            a = func(*n)
+            fib.cache[n] = a
         fin_time = datetime.now()
         print('it took ' + str(fin_time - start_time))
-        test_foo.counter += 1
-        test_foo.were_called.append(datetime.now())
-        print(f"job was done {test_foo.counter} time(s)")
+        fib.counter += 1
+        fib.were_called.append(datetime.now())
+        print(f"job was done {fib.counter} time(s)")
         return a
     return wrapper
 
 
-decorated_func_1 = decorator_func1(test_foo)
-# decorated_func_1.counter = 0
-# decorated_func_1.were_called = []
-# decorator_func1.cache = {}
+decorated_func_1 = decorator_func1(fib)
+
 print(decorated_func_1(4))
 print(decorated_func_1(5))
+print(fib.cache)
 decorated_func_1(1000000)
-print(test_foo.were_called)
+print(fib.were_called)
 
 
