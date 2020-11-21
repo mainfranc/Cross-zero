@@ -45,3 +45,11 @@ def total_capitalization(in_str):
 
 test_str = "пРИВЕТ.этО ТеСтовое ПреДлОжение.оно НЕ имеет ЗНаЧения"
 print(total_capitalization(test_str))
+
+# Else
+
+def pipeline_each(lst, *funcs):
+    for i in lst:
+        for f in funcs:
+            f(i)
+    return lst
