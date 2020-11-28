@@ -28,3 +28,14 @@ comp_struct = {i: [str(k) for k in range(5)] for i in range(7)}
 look_at_json(comp_struct)
 
 
+# Pickling
+def pickling(in_struct):
+    p_struct = pickle.dumps(in_struct)
+    print(p_struct)
+    with open('test.txt', "wb") as f:
+        f.write(p_struct)
+        print(f)
+
+    return tuple(pickle.loads(p_struct))
+
+print(pickling(comp_struct))
