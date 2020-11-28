@@ -39,3 +39,14 @@ def pickling(in_struct):
     return tuple(pickle.loads(p_struct))
 
 print(pickling(comp_struct))
+
+
+# OS
+def load_enviromental():
+    e_dict = os.environ
+    if not e_dict.get('PY_DEBUG', False):
+        for i in e_dict:
+            print(i, e_dict[i])
+
+
+load_enviromental()
