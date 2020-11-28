@@ -43,11 +43,26 @@ def total_capitalization(in_str):
     return in_str[0].upper() + ''.join([in_str[i].upper() if in_str[i - 1] == '.' else in_str[i].lower() for i in range(1, len(in_str))])
 
 
+def Capitalize(in_str):
+    result = ""
+    next_symbol_upper = True
+    for symbol in in_str:
+        if not symbol.isalpha():
+            if symbol == ".":
+                next_symbol_upper = True
+            result += symbol
+        else:
+            result += symbol.upper() if next_symbol_upper else symbol.lower()
+            next_symbol_upper = False
+    return result
+
+
 test_str = "пРИВЕТ.этО ТеСтовое ПреДлОжение.оно НЕ имеет ЗНаЧения"
 print(total_capitalization(test_str))
+print(Capitalize(test_str))
+
 
 # Else
-
 def pipeline_each(lst, *funcs):
     for i in lst:
         for f in funcs:
