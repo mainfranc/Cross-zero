@@ -36,7 +36,7 @@ print(append_symbols('Что тут происходит? я не понимаю
 
 
 def count_words(in_str):
-    lst_words =  re.split('\s|[.!?,\']', in_str)
+    lst_words =  re.split('\s|[\.!?,\']', in_str)
     counter = 0
     for i in lst_words:
         if i:
