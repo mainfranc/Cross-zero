@@ -8,3 +8,4 @@ abb = r"\s[A-ZА-ЯЁ]{1,}\s"
 empty_string = r"^\s*$"
 rand_text = r"(\w*(\s|\.))*"
 e_mail = r"([a-zA-Z0-9]){1,}\@([a-zA-Z0-9]){1,}\.(ru|com)"
+url_get = r'http(s)*:\\\\[a-zA-Z]{1,}.(ru|com)(\\[0-9a-zA-Z]*)*\?([0-9a-zA-Z]*)\=([0-9a-zA-Z]*)'
