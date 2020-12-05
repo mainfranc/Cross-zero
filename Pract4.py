@@ -45,3 +45,15 @@ def count_words(in_str):
 
 
 print(count_words('what is going on here?'))
+
+
+def abb(in_str):
+    lst_words =  re.split('\s|[\.!?,\']', in_str)
+    result = ''
+    for i in lst_words:
+        if i:
+            result += i[0].upper()
+    return result
+
+
+print(abb('what is going on here?'))
