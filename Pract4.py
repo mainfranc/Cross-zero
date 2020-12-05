@@ -21,3 +21,27 @@ def check_is_ISO(str_date):
 
 print(check_is_ISO('2020-12-05'))
 print(check_is_ISO('2020-30-30'))
+
+
+def append_symbols(in_str):
+    set_of_syms = set()
+    reg_ex = r"\w"
+    all_syms = re.compile(reg_ex).findall
+    for i in all_syms(in_str):
+        set_of_syms.add(i)
+    return set_of_syms
+
+
+print(append_symbols('Что тут происходит? я не понимаю'))
+
+
+def count_words(in_str):
+    lst_words =  re.split('\s|[.!?,\']', in_str)
+    counter = 0
+    for i in lst_words:
+        if i:
+            counter += 1
+    return counter
+
+
+print(count_words('what is going on here?'))
