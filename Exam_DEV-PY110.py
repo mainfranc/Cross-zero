@@ -55,9 +55,9 @@ for i in generate_random_add('Россия', 'Новосибирск', 'streets.
 
 # 2
 def dec_(func):
-    def wrapper(*args, is_test=''):
-        result = func(*args)
-        if is_test.lower() != 'test':
+    def wrapper(*args, is_test='', test=False, **kwargs):
+        if is_test.lower() != 'test' and not test:
+            result = func(*args, **kwargs)
             return result
         else:
             return f"Вызов функции {func} с параметрами {args}"
@@ -69,9 +69,10 @@ def pow_n(n, pov_):
     """
     :param n: number
     :param pov_: power
-    :return: powered number. type is_test = 'test' to show parameters.
+    :return: powered number. type is_test = 'test' or test = True to show parameters.
     """
     return n ** pov_
 print(pow_n(4, 3, is_test='test'))
+print(pow_n(4, 3, test=True))
 print(pow_n(4, 3))
 
