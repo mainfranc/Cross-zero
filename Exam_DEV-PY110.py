@@ -2,6 +2,7 @@ from random import randint
 from random import choice
 import json
 import re
+import requests
 
 # 1
 def generate_random_add(country_, city_, fname):
@@ -25,8 +26,28 @@ def generate_random_add(country_, city_, fname):
         if current_Numbers[2]:
             corp = 'корп. ' + str(current_Numbers[2]) + ', '
         fl = 'кв. ' + str(current_Numbers[3])
-        yield country + city +  streetName + houseNum + corp + fl
+        yield normalize_address(country + city +  streetName + houseNum + corp + fl)
 
+
+def normalize_address(in_str):
+    url = "https://otpravka-api.pochta.ru/1.0/clean/address"
+    token = "Test_token"
+    key = "Test_key"
+
+    request_headers = {
+        "Content-Type": "application/json",
+        "Accept": "application/json;charset=UTF-8",
+        "Authorization": "AccessToken " + token,
+        "X-User-Authorization": "Basic " + key
+    }
+    addresses = [
+        {
+            "id": "0",
+            "original-address": in_str
+        }
+    ]
+    response = requests.post(url, headers=request_headers, data=json.dumps(addresses))
+    return response.text
 
 def read_json_from_the_file(fname):
     with open(fname, 'r', encoding='utf8') as f:
@@ -60,7 +81,7 @@ def dec_(func):
             result = func(*args, **kwargs)
             return result
         else:
-            return f"Вызов функции {func} с параметрами {args}"
+            return f"Вызов функции {func.__name__} с параметрами {args}"
     return wrapper
 
 
@@ -75,4 +96,3 @@ def pow_n(n, pov_):
 print(pow_n(4, 3, is_test='test'))
 print(pow_n(4, 3, test=True))
 print(pow_n(4, 3))
-
