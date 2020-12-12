@@ -4,6 +4,7 @@ import json
 import re
 import requests
 
+
 # 1
 def generate_random_add(country_, city_, fname):
     """
@@ -33,7 +34,6 @@ def normalize_address(in_str):
     url = "https://otpravka-api.pochta.ru/1.0/clean/address"
     token = "Test_token"
     key = "Test_key"
-
     request_headers = {
         "Content-Type": "application/json",
         "Accept": "application/json;charset=UTF-8",
@@ -48,6 +48,7 @@ def normalize_address(in_str):
     ]
     response = requests.post(url, headers=request_headers, data=json.dumps(addresses))
     return response.text
+
 
 def read_json_from_the_file(fname):
     with open(fname, 'r', encoding='utf8') as f:
@@ -66,6 +67,7 @@ def validate_streets(in_str):
 
 def ran_numbers(dict_):
     return [choice(list(dict_.keys())), randint(1,99), randint(0,3), randint(1,144)]
+
 
 counter = 0
 for i in generate_random_add('Россия', 'Новосибирск', 'streets.json'):
