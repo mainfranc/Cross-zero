@@ -5,6 +5,12 @@ import re
 
 # 1
 def generate_random_add(country_, city_, fname):
+    """
+    :param country_: Country name
+    :param city_: city name
+    :param fname: path to json file
+    :return: generator of the random addresses
+    """
     country = country_ + ', '
     city = 'г. ' + city_ + ', '
     adressDict = read_json_from_the_file(fname)
@@ -48,24 +54,24 @@ for i in generate_random_add('Россия', 'Новосибирск', 'streets.
         break
 
 # 2
-def decorator_fab(is_test):
-    def dec_(func):
-        def wrapper(*args, ):
-            result = func(*args)
-            if is_test.lower() != 'test':
-                return result
-            else:
-                return f"Вызов функции {func} с параметрами {args}"
-        return wrapper
-    return dec_
+def dec_(func):
+    def wrapper(*args, is_test=''):
+        result = func(*args)
+        if is_test.lower() != 'test':
+            return result
+        else:
+            return f"Вызов функции {func} с параметрами {args}"
+    return wrapper
 
 
-@decorator_fab('test')
+@dec_
 def pow_n(n, pov_):
+    """
+    :param n: number
+    :param pov_: power
+    :return: powered number. type is_test = 'test' to show parameters.
+    """
     return n ** pov_
+print(pow_n(4, 3, is_test='test'))
 print(pow_n(4, 3))
 
-@decorator_fab('not test')
-def pow_n(n, pov_):
-    return n ** pov_
-print(pow_n(4, 3))
