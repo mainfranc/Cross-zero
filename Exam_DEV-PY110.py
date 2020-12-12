@@ -48,3 +48,24 @@ for i in generate_random_add('Россия', 'Новосибирск', 'streets.
         break
 
 # 2
+def decorator_fab(is_test):
+    def dec_(func):
+        def wrapper(*args, ):
+            result = func(*args)
+            if is_test.lower() != 'test':
+                return result
+            else:
+                return f"Вызов функции {func} с параметрами {args}"
+        return wrapper
+    return dec_
+
+
+@decorator_fab('test')
+def pow_n(n, pov_):
+    return n ** pov_
+print(pow_n(4, 3))
+
+@decorator_fab('not test')
+def pow_n(n, pov_):
+    return n ** pov_
+print(pow_n(4, 3))
